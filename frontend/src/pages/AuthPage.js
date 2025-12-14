@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { apiRequest } from '../api';
+import { loginUser, registerUser } from '../api';
 import toast from 'react-hot-toast';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 
 const AuthPage = () => {
-    const { login } = useAuth();
+    const { login: authLogin } = useAuth();
     const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState('login');
     const [formData, setFormData] = useState({ name: '', email: '', password: '' });
@@ -17,16 +17,16 @@ const AuthPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        const endpoint = activeTab === 'login' ? '/auth/login' : '/auth/register';
-
-        // Fix: Only send necessary fields for login
-        const payload = activeTab === 'login'
-            ? { email: formData.email, password: formData.password }
-            : formData;
 
         try {
-            const data = await apiRequest(endpoint, 'POST', payload);
-            login(data);
+            let data;
+            if (activeTab === 'login') {
+                data = await loginUser({ email: formData.email, password: formData.password });
+            } else {
+                data = await registerUser(formData);
+            }
+
+            authLogin(data);
             toast.success(`Welcome back, ${data.name}!`);
             navigate('/');
         } catch (err) {

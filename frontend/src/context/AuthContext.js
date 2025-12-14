@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
-import { apiRequest, setToken as setApiToken } from '../api';
+import { apiRequest, setToken as setApiToken, getMe } from '../api';
 
 const AuthContext = createContext();
 
@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
             if (token) {
                 setApiToken(token);
                 try {
-                    const data = await apiRequest('/auth/me', 'GET', null, true);
+                    const data = await getMe();
                     setUser(data);
                 } catch (err) {
                     console.error('Session expired', err);
