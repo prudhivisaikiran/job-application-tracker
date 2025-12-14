@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getJobs, createJob, updateJob, deleteJob } from '../api';
-import { Plus, BarChart2, Briefcase, CheckCircle, XCircle, Clock, X } from 'lucide-react';
+import { Plus, Briefcase, CheckCircle, XCircle, Clock, X } from 'lucide-react';
 import toast from 'react-hot-toast';
 import JobTable from '../components/JobTable';
 import Modal from '../components/Modal';

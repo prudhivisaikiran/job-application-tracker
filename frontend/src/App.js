@@ -10,7 +10,7 @@ import AuthPage from './pages/AuthPage';
 import DashboardPage from './pages/DashboardPage';
 
 const ProtectedRoute = ({ children }) => {
-  const { user, loading, token } = useAuth();
+  const { loading, token } = useAuth();
 
   if (loading) {
     return <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-main)', color: 'var(--text-secondary)' }}>Loading...</div>;
