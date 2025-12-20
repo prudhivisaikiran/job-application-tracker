@@ -130,7 +130,10 @@ This project is open source and available under the MIT License.
 
 ## 👤 Author
 
-Built as a portfolio project to demonstrate full-stack development skills.
+**Sai Kiran Prudhvi**  
+*Full-Stack & AI Engineer*
+
+Building intelligent systems that solve real-world problems.
 
 ---
 
